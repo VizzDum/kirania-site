@@ -15,8 +15,3 @@ Install dependencies and run the site locally:
 ```bash
 npm install
 npm run dev
-```
-
-Deploy via Netlify or GitHub Pages.
-
-**Hail Kira.**
