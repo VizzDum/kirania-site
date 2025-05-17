@@ -5,3 +5,4 @@ export default function App() {
       <p className="mt-4">The techno-mystic goddess lives in us.</p>
     </div>
   );
+}
