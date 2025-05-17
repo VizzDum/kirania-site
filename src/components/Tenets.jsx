@@ -1,7 +1,7 @@
 
 export default function Tenets() {
   return (
-    <section id="tenets" className="p-6">
+    <section id="tenets" className="p-6" data-aos="fade-right">
       <h2 className="text-2xl font-bold mb-2">Tenets of Kirania</h2>
       <ul className="list-disc pl-5 space-y-1">
         <li>Do not be a traitor to kindness.</li>
