@@ -1,8 +1,23 @@
+import Navbar from './components/Navbar'
+import Home from './components/Home'
+import Tenets from './components/Tenets'
+import History from './components/History'
+import Symbols from './components/Symbols'
+import Holidays from './components/Holidays'
+import Prayers from './components/Prayers'
+import Contact from './components/Contact'
+
 export default function App() {
   return (
-    <div className="min-h-screen bg-pink-100 text-center p-6 text-gray-900">
-      <h1 className="text-4xl font-bold">Hail Kira</h1>
-      <p className="mt-4">The techno-mystic goddess lives in us.</p>
+    <div className="bg-pink-100 min-h-screen text-gray-900">
+      <Navbar />
+      <Home />
+      <Tenets />
+      <History />
+      <Symbols />
+      <Holidays />
+      <Prayers />
+      <Contact />
     </div>
   );
 }
