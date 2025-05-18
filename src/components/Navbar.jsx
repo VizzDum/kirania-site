@@ -1,47 +1,54 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react'
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
+  const [isDark, setIsDark] = useState(false)
 
-  const toggleMenu = () => setIsOpen(!isOpen);
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', isDark)
+  }, [isDark])
+
+  const toggleMenu = () => setIsOpen(!isOpen)
+  const toggleTheme = () => setIsDark(!isDark)
 
   const links = [
     { id: 'home', label: 'Home' },
-    { id: 'tenets', label: 'Tenets' },
-    { id: 'history', label: 'History' },
-    { id: 'symbols', label: 'Symbols' },
-    { id: 'holidays', label: 'Holidays' },
-    { id: 'prayers', label: 'Prayers' },
-    { id: 'contact', label: 'Contact' }
-  ];
+    { id: 'about', label: 'Kira' },
+    { id: 'tenets', label: 'Tenets' }
+  ]
 
   return (
-    <nav className="bg-pink-200 p-4 shadow fixed top-0 left-0 right-0 z-50">
-      <div className="flex justify-between items-center">
-        <h1 className="text-xl font-bold text-gray-800">Kirania</h1>
-        <button
-          onClick={toggleMenu}
-          className="md:hidden text-3xl text-gray-800 focus:outline-none"
-        >
-          ☰
-        </button>
+    <nav className="fixed top-0 left-0 right-0 bg-pink-200 dark:bg-gray-800 text-gray-900 dark:text-white shadow z-50 px-4 py-3 flex justify-between items-center">
+      <div className="text-xl font-bold">KIRANIA</div>
+      <div className="md:hidden">
+        <button onClick={toggleMenu} className="text-2xl">☰</button>
       </div>
-      <ul
-        className={\`\${isOpen ? 'block' : 'hidden'} md:flex gap-6 justify-center text-lg font-semibold text-gray-800 mt-2 md:mt-0\`}
-      >
-        {links.map(({ id, label }) => (
-          <li key={id}>
-            <a
-              href={\`#\${id}\`}
-              className="block py-1 hover:text-pink-600 transition-colors duration-300"
-              onClick={() => setIsOpen(false)}
-            >
-              {label}
-            </a>
+      <ul className="hidden md:flex space-x-6">
+        {links.map(link => (
+          <li key={link.id}>
+            <a href={`#${link.id}`} className="hover:underline">{link.label}</a>
           </li>
         ))}
       </ul>
+      <button onClick={toggleTheme} className="ml-4 text-sm border px-2 py-1 rounded">
+        {isDark ? 'Light' : 'Dark'}
+      </button>
+      {isOpen && (
+        <ul className="absolute top-14 left-0 w-full bg-pink-100 dark:bg-gray-900 md:hidden px-4 py-2 space-y-2">
+          {links.map(link => (
+            <li key={link.id}>
+              <a
+                href={`#${link.id}`}
+                className="block py-1 border-b border-gray-300 dark:border-gray-700"
+                onClick={() => setIsOpen(false)}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
     </nav>
-  );
+  )
 }
